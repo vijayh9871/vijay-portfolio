@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vijay Hiremath - BCA student and aspiring web developer portfolio.">
+  <meta name="theme-color" content="#050816">
+  <title>Vijay Hiremath | BCA Student & Web Developer</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+    :root {
+      --primary: #2563eb;
+      --blue: #38bdf8;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
+      --dark: #050816;
+      --dark2: #0f172a;
+      --white: #ffffff;
+      --text: #334155;
+      --light: #f8fafc;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--light);
+      overflow-x: hidden;
+    }
+
+    .background {
+      position: fixed; inset: 0; z-index: -100; overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(139,92,246,.18), transparent 30%),
+        radial-gradient(circle at 85% 30%, rgba(56,189,248,.15), transparent 30%),
+        radial-gradient(circle at 50% 90%, rgba(236,72,153,.12), transparent 30%),
+        #050816;
+    }
+
+    .orb {
+      position: absolute; border-radius: 50%; filter: blur(90px);
+      opacity: .4; animation: floatingOrb 12s infinite alternate ease-in-out;
+    }
+    .orb1 { width: 350px; height: 350px; background: #7c3aed; top: 5%; left: 5%; }
+    .orb2 { width: 400px; height: 400px; background: #0284c7; right: -100px; top: 35%; animation-delay: 2s; }
+    .orb3 { width: 320px; height: 320px; background: #db2777; bottom: -100px; left: 35%; animation-delay: 4s; }
+
+    @keyframes floatingOrb {
+      0% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(70px,-50px) scale(1.15); }
+      100% { transform: translate(-50px,70px) scale(.9); }
+    }
+
+    .particles { position: fixed; inset: 0; z-index: -50; pointer-events: none; }
+    .particle {
+      position: absolute; width: 3px; height: 3px; border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 8px var(--blue), 0 0 18px var(--purple);
+      animation: particleMove linear infinite;
+    }
+    @keyframes particleMove {
+      0% { transform: translateY(100vh); opacity: 0; }
+      20%,80% { opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 1000; display: flex;
+      justify-content: space-between; align-items: center; padding: 16px 8%;
+      background: rgba(5,8,22,.88); backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .logo { color: white; font-size: 24px; font-weight: 800; letter-spacing: 1px; }
+    .logo span { color: var(--blue); }
+    nav ul { display: flex; list-style: none; gap: 22px; }
+    nav a { color: #cbd5e1; text-decoration: none; font-size: 14px; font-weight: 500; transition: .3s; }
+    nav a:hover { color: var(--blue); text-shadow: 0 0 10px rgba(56,189,248,.5); }
+
+    .hero {
+      position: relative; min-height: 92vh; display: flex; justify-content: center;
+      align-items: center; text-align: center; padding: 80px 20px; overflow: hidden;
+    }
+    .hero-content { position: relative; z-index: 20; max-width: 800px; color: white; animation: heroEnter 1.2s ease; }
+    @keyframes heroEnter { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+
+    .profile-badge {
+      display: inline-block; padding: 9px 18px; margin-bottom: 22px;
+      border: 1px solid rgba(56,189,248,.45); border-radius: 30px;
+      background: rgba(56,189,248,.08); color: #7dd3fc; font-size: 14px;
+      animation: badgePulse 2.5s infinite;
+    }
+    @keyframes badgePulse {
+      0%,100% { box-shadow: 0 0 10px rgba(56,189,248,.08); }
+      50% { box-shadow: 0 0 30px rgba(56,189,248,.35); }
+    }
+
+    .hero h1 {
+      font-size: clamp(42px,7vw,72px); line-height: 1.1; margin-bottom: 15px;
+      background: linear-gradient(90deg,#fff,#38bdf8,#8b5cf6,#ec4899,#fff);
+      background-size: 300%; -webkit-background-clip: text;
+      background-clip: text; -webkit-text-fill-color: transparent;
+      animation: gradientText 6s linear infinite;
+    }
+    @keyframes gradientText { 0% { background-position: 0%; } 100% { background-position: 300%; } }
+    .hero h2 { font-size: clamp(20px,3vw,28px); color: #c4b5fd; margin-bottom: 20px; font-weight: 500; min-height: 40px; }
+    #typing::after { content: "|"; color: var(--blue); animation: blink .7s infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .hero p { max-width: 680px; margin: auto; color: #cbd5e1; font-size: 17px; }
+
+    .hero-buttons, .certificate-buttons {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 30px;
+    }
+    .btn {
+      display: inline-block; padding: 13px 25px; border-radius: 8px;
+      text-decoration: none; font-weight: 600; transition: .35s; cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(90deg,#2563eb,#7c3aed); color: white;
+      box-shadow: 0 0 20px rgba(37,99,235,.35);
+    }
+    .btn-primary:hover { transform: translateY(-5px) scale(1.04); box-shadow: 0 10px 35px rgba(124,58,237,.5); }
+    .btn-outline { color: white; border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.05); }
+    .btn-outline:hover { color: var(--blue); border-color: var(--blue); transform: translateY(-5px); }
+
+    section { max-width: 1100px; margin: auto; padding: 90px 8%; }
+    section h2 { text-align: center; font-size: 36px; color: #111827; margin-bottom: 45px; }
+    section h2::after {
+      content: ""; display: block; width: 55px; height: 4px; margin: 12px auto 0;
+      background: linear-gradient(90deg,#2563eb,#8b5cf6); border-radius: 10px;
+    }
+
+    .glass {
+      background: rgba(255,255,255,.78); backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,.6); border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(15,23,42,.08); transition: .4s;
+    }
+    .glass:hover { border-color: rgba(37,99,235,.35); box-shadow: 0 20px 50px rgba(37,99,235,.12); }
+
+    .about-card { padding: 35px; }
+    .about-card > p { font-size: 17px; color: #475569; }
+    .about-highlights { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 30px; }
+    .highlight { padding: 22px; text-align: center; background: rgba(239,246,255,.9); border-radius: 14px; border: 1px solid #dbeafe; }
+    .highlight-icon { font-size: 30px; margin-bottom: 8px; transition: .4s; }
+    .highlight:hover .highlight-icon { transform: scale(1.25) rotate(8deg); }
+    .highlight h3 { color: #0f172a; font-size: 17px; }
+    .highlight p { font-size: 14px; margin-top: 5px; color: #64748b; }
+
+    .education-card {
+      position: relative; padding: 28px; margin-bottom: 22px; background: rgba(255,255,255,.86);
+      border-radius: 16px; border-left: 5px solid var(--primary);
+      box-shadow: 0 10px 30px rgba(15,23,42,.07); transition: .4s;
+    }
+    .education-card:hover { transform: translateX(8px); box-shadow: 0 15px 35px rgba(37,99,235,.12); }
+    .education-card h3 { color: var(--primary); margin-bottom: 8px; font-size: 21px; }
+    .education-card strong { color: #0f172a; }
+    .education-date {
+      display: inline-block; margin-top: 12px; padding: 5px 12px; background: #eff6ff;
+      color: var(--primary); border-radius: 20px; font-size: 13px; font-weight: 600;
+    }
+
+    .skills { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+    .skill {
+      padding: 25px 15px; text-align: center; background: rgba(255,255,255,.85);
+      border-radius: 15px; border: 1px solid rgba(148,163,184,.2);
+      box-shadow: 0 8px 25px rgba(15,23,42,.06); transition: transform .3s,box-shadow .3s;
+    }
+    .skill-icon { font-size: 32px; margin-bottom: 10px; transition: .5s; }
+    .skill:hover { transform: translateY(-7px); box-shadow: 0 15px 40px rgba(37,99,235,.15); }
+    .skill:hover .skill-icon { transform: rotateY(360deg) scale(1.2); }
+    .skill h3 { font-size: 16px; color: #0f172a; }
+
+    .projects { display: grid; grid-template-columns: repeat(2,1fr); gap: 25px; }
+    .project-card {
+      padding: 30px; background: rgba(255,255,255,.86); border-radius: 17px;
+      border: 1px solid rgba(148,163,184,.2); box-shadow: 0 10px 30px rgba(15,23,42,.07); transition: .4s;
+    }
+    .project-card:hover { transform: translateY(-7px); box-shadow: 0 18px 40px rgba(37,99,235,.13); }
+    .project-number { color: #dbeafe; font-size: 45px; font-weight: 800; }
+    .project-card h3 { color: var(--primary); margin: 5px 0 12px; }
+    .project-card p { color: #64748b; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .project-tag { padding: 5px 10px; border-radius: 15px; background: #eff6ff; color: var(--primary); font-size: 12px; font-weight: 600; }
+
+    /* Certificate cards */
+    .certificate-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 25px; }
+    .certificate-card {
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      padding: 28px; background: rgba(255,255,255,.88); border: 1px solid rgba(148,163,184,.2);
+      border-radius: 18px; box-shadow: 0 10px 30px rgba(15,23,42,.07); transition: .35s;
+    }
+    .certificate-card:hover { transform: translateY(-7px); box-shadow: 0 18px 40px rgba(37,99,235,.14); }
+    .certificate-icon {
+      width: 65px; height: 65px; display: flex; justify-content: center; align-items: center;
+      border-radius: 15px; background: linear-gradient(135deg,#2563eb,#8b5cf6);
+      font-size: 30px; margin-bottom: 15px;
+    }
+    .certificate-card h3 { color: var(--primary); margin-bottom: 7px; }
+    .certificate-card p { color: #64748b; font-size: 14px; }
+    .certificate-buttons { gap: 10px; margin-top: 20px; }
+    .certificate-buttons .btn { font-size: 13px; padding: 11px 15px; }
+    .certificate-buttons .btn-outline { color: var(--primary); border-color: #bfdbfe; background: #eff6ff; }
+    .certificate-buttons .btn-outline:hover { color: white; background: var(--primary); border-color: var(--primary); }
+
+    .interests { display: flex; flex-wrap: wrap; justify-content: center; gap: 13px; }
+    .tag {
+      padding: 11px 19px; background: rgba(255,255,255,.88); border: 1px solid #e2e8f0;
+      border-radius: 25px; color: #334155; box-shadow: 0 5px 15px rgba(15,23,42,.05); transition: .3s;
+    }
+    .tag:hover { color: white; background: linear-gradient(90deg,#2563eb,#8b5cf6); border-color: transparent; transform: translateY(-4px) scale(1.04); }
+
+    .contact-box {
+      padding: 45px; text-align: center;
+      background: linear-gradient(135deg,rgba(239,246,255,.95),rgba(245,243,255,.95));
+      border-radius: 20px; border: 1px solid #dbeafe; box-shadow: 0 20px 50px rgba(37,99,235,.08);
+    }
+    .contact-box h3 { font-size: 26px; color: #0f172a; margin-bottom: 10px; }
+    .contact-box > p { color: #64748b; margin-bottom: 25px; }
+    .contact-details { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; }
+    .contact-item { padding: 14px 18px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(15,23,42,.05); overflow-wrap: anywhere; }
+    .contact-item a { color: var(--primary); text-decoration: none; }
+    .contact-item a:hover { text-decoration: underline; }
+
+    footer { padding: 30px 20px; text-align: center; background: #050816; color: #94a3b8; }
+    footer strong { color: white; }
+
+    .reveal { opacity: 0; transform: translateY(45px); transition: opacity .9s ease,transform .9s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    .mouse-glow {
+      position: absolute; width: 250px; height: 250px; border-radius: 50%;
+      pointer-events: none; z-index: 8; transform: translate(-50%,-50%);
+      background: radial-gradient(circle,rgba(56,189,248,.18),rgba(139,92,246,.08),transparent 70%);
+      filter: blur(10px);
+    }
+
+    @media (max-width: 850px) {
+      nav { flex-direction: column; gap: 12px; }
+      nav ul { flex-wrap: wrap; justify-content: center; gap: 12px; }
+      .skills { grid-template-columns: repeat(2,1fr); }
+      .about-highlights { grid-template-columns: 1fr; }
+      .projects, .certificate-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 15px 5%; }
+      nav ul { gap: 9px 12px; }
+      nav a { font-size: 13px; }
+      .hero { min-height: 88vh; }
+      .hero h1 { font-size: 42px; }
+      .hero p { font-size: 15px; }
+      section { padding: 65px 6%; }
+      section h2 { font-size: 30px; }
+      .skills { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .skill { padding: 20px 10px; }
+      .contact-box { padding: 30px 18px; }
+      .contact-details { flex-direction: column; }
+      .mouse-glow { display: none; }
+      .certificate-card { padding: 24px 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background" aria-hidden="true">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+  <div class="particles" id="particles" aria-hidden="true"></div>
+
+  <nav aria-label="Main navigation">
+    <div class="logo">Vijay<span>.</span></div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="profile-badge">✨ Open to Internship Opportunities</div>
+        <h1>Hi, I'm Vijay Hiremath</h1>
+        <h2><span id="typing">BCA Student</span></h2>
+        <p>
+          I am a BCA 5th-semester student passionate about web development,
+          programming and technology. I am looking for an opportunity to gain
+          practical industry experience and contribute to real-world projects.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">Contact Me</a>
+          <a href="#projects" class="btn btn-outline">View My Work</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="reveal">
+      <h2>About Me</h2>
+      <div class="about-card glass">
+        <p>
+          I am a motivated BCA 5th-semester student at RR Institute of Management
+          Studies, Bangalore. I am interested in web development and enjoy learning
+          new technologies and programming concepts. My goal is to develop strong
+          technical skills, gain hands-on experience and contribute to meaningful
+          real-world projects.
+        </p>
+        <div class="about-highlights">
+          <div class="highlight glass">
+            <div class="highlight-icon">🎓</div>
+            <h3>BCA Student</h3>
+            <p>Currently pursuing my 5th semester.</p>
+          </div>
+          <div class="highlight glass">
+            <div class="highlight-icon">💻</div>
+            <h3>Web Development</h3>
+            <p>Interested in modern web technologies.</p>
+          </div>
+          <div class="highlight glass">
+            <div class="highlight-icon">🚀</div>
+            <h3>Career Goal</h3>
+            <p>Seeking practical industry experience.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="reveal">
+      <h2>Education</h2>
+      <div class="timeline">
+        <div class="education-card">
+          <h3>Bachelor of Computer Applications (BCA)</h3>
+          <p><strong>RR Institute of Management Studies, Bangalore</strong></p>
+          <span class="education-date">2024 – 2027 | Currently 5th Semester</span>
+        </div>
+        <div class="education-card">
+          <h3>Pre-University Course (PUC)</h3>
+          <p><strong>VB Darbar, Vijayapura</strong></p>
+          <span class="education-date">2024 | 72%</span>
+        </div>
+        <div class="education-card">
+          <h3>SSLC</h3>
+          <p><strong>Shree Revanashiddeshwara High Primary School, Horti</strong></p>
+          <span class="education-date">2022 | 82%</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="reveal">
+      <h2>Technical Skills</h2>
+      <div class="skills">
+        <div class="skill"><div class="skill-icon">☕</div><h3>Java</h3></div>
+        <div class="skill"><div class="skill-icon">⚙️</div><h3>C Programming</h3></div>
+        <div class="skill"><div class="skill-icon">🌐</div><h3>HTML</h3></div>
+        <div class="skill"><div class="skill-icon">🎨</div><h3>CSS</h3></div>
+        <div class="skill"><div class="skill-icon">⚡</div><h3>JavaScript</h3></div>
+        <div class="skill"><div class="skill-icon">🗄️</div><h3>MySQL</h3></div>
+        <div class="skill"><div class="skill-icon">💻</div><h3>VS Code</h3></div>
+        <div class="skill"><div class="skill-icon">📊</div><h3>MS Office</h3></div>
+      </div>
+    </section>
+
+    <section id="projects" class="reveal">
+      <h2>Projects & Interests</h2>
+      <div class="projects">
+        <div class="project-card">
+          <div class="project-number">01</div>
+          <h3>Web Development Projects</h3>
+          <p>
+            Currently building my skills in web development and looking forward
+            to working on real-world projects during an internship.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">HTML</span>
+            <span class="project-tag">CSS</span>
+            <span class="project-tag">JavaScript</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-number">02</div>
+          <h3>Internship Interests</h3>
+          <p>
+            I am interested in opportunities involving front-end development,
+            responsive websites, basic back-end development and database integration.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Frontend</span>
+            <span class="project-tag">Responsive Design</span>
+            <span class="project-tag">Database</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES: Keep the certificates folder beside index.html. -->
+    <section id="certificates" class="reveal">
+      <h2>My Certificates</h2>
+      <div class="certificate-grid">
+
+        <article class="certificate-card">
+          <div class="certificate-icon">☁️</div>
+          <h3>Cloud Computing with AWS</h3>
+          <p>Edumantra Ed-Tech Services</p>
+          <p>Completed: May 20, 2025</p>
+          <div class="certificate-buttons">
+            <a class="btn btn-primary" href="certificates/aws-certificate.jpeg" target="_blank" rel="noopener noreferrer">View Certificate</a>
+            <a class="btn btn-outline" href="certificates/aws-certificate.jpeg" download="Vijay-AWS-Cloud-Computing-Certificate.jpeg">Download</a>
+          </div>
+        </article>
+
+        <article class="certificate-card">
+          <div class="certificate-icon">🏆</div>
+          <h3>Digital Public Infrastructure Workshop</h3>
+          <p>eMudhra – Certificate of Participation</p>
+          <p>Completed: September 29, 2026</p>
+          <div class="certificate-buttons">
+            <a class="btn btn-primary" href="certificates/emudhra-certificate.jpeg" target="_blank" rel="noopener noreferrer">View Certificate</a>
+            <a class="btn btn-outline" href="certificates/emudhra-certificate.jpeg" download="Vijay-eMudhra-DPI-Workshop-Certificate.jpeg">Download</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="reveal">
+      <h2>Languages & Interests</h2>
+      <div class="interests">
+        <span class="tag">🇮🇳 Kannada</span>
+        <span class="tag">🌎 English</span>
+        <span class="tag">🇮🇳 Hindi</span>
+        <span class="tag">🎮 Gaming</span>
+        <span class="tag">🎬 Video Editing</span>
+        <span class="tag">💡 Technology</span>
+        <span class="tag">✈️ Traveling</span>
+      </div>
+    </section>
+
+    <section id="contact" class="reveal">
+      <h2>Let's Connect</h2>
+      <div class="contact-box">
+        <h3>Interested in working together?</h3>
+        <p>
+          I am currently looking for internship opportunities where I can learn,
+          contribute and grow as a developer.
+        </p>
+        <div class="contact-details">
+          <div class="contact-item">📍 Bangalore, Karnataka</div>
+          <div class="contact-item">📞 <a href="tel:+919164211004">+91 9164211004</a></div>
+          <div class="contact-item">✉️ <a href="mailto:hiremathvijay106@gmail.com">hiremathvijay106@gmail.com</a></div>
+          <div class="contact-item">💼 <a href="https://linkedin.com/in/vijay-h-728b8334a" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year">2026</span> <strong>Vijay Hiremath</strong> | BCA Student Portfolio</p>
+  </footer>
+
+  <script>
+    // Floating particles
+    const particleContainer = document.getElementById("particles");
+    for (let i = 0; i < 80; i++) {
+      const particle = document.createElement("span");
+      particle.className = "particle";
+      particle.style.left = Math.random() * 100 + "%";
+      particle.style.animationDuration = (5 + Math.random() * 12) + "s";
+      particle.style.animationDelay = Math.random() * 10 + "s";
+      particle.style.opacity = Math.random();
+      particleContainer.appendChild(particle);
+    }
+
+    // Typing animation
+    const typingElement = document.getElementById("typing");
+    const typingTexts = [
+      "BCA Student",
+      "Aspiring Web Developer",
+      "Java Programmer",
+      "Technology Enthusiast"
+    ];
+    let textIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function typingEffect() {
+      const currentText = typingTexts[textIndex];
+
+      if (!deleting) {
+        typingElement.textContent = currentText.substring(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === currentText.length) {
+          deleting = true;
+          setTimeout(typingEffect, 1500);
+          return;
+        }
+      } else {
+        typingElement.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+          deleting = false;
+          textIndex = (textIndex + 1) % typingTexts.length;
+        }
+      }
+      setTimeout(typingEffect, deleting ? 50 : 100);
+    }
+    typingEffect();
+
+    // Reveal sections as they enter the screen
+    const revealElements = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      revealElements.forEach(element => revealObserver.observe(element));
+    } else {
+      revealElements.forEach(element => element.classList.add("active"));
+    }
+
+    // Gentle 3D tilt on pointer devices only
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      const cards = document.querySelectorAll(".skill, .project-card, .highlight");
+      cards.forEach(card => {
+        card.addEventListener("mousemove", event => {
+          const rect = card.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+          const rotateX = (y - rect.height / 2) / 22;
+          const rotateY = (rect.width / 2 - x) / 22;
+          card.style.transform =
+            `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "";
+        });
+      });
+    }
+
+    // Mouse glow in the hero (desktop only)
+    const hero = document.querySelector(".hero");
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      const mouseGlow = document.createElement("div");
+      mouseGlow.className = "mouse-glow";
+      hero.appendChild(mouseGlow);
+      hero.addEventListener("mousemove", event => {
+        const rect = hero.getBoundingClientRect();
+        mouseGlow.style.left = (event.clientX - rect.left) + "px";
+        mouseGlow.style.top = (event.clientY - rect.top) + "px";
+      });
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
